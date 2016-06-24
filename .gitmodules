@@ -1,0 +1,3 @@
+[submodule "deps/sandstorm-tcp-listener-proxy"]
+	path = deps/sandstorm-tcp-listener-proxy
+	url = git@github.com:jparyani/sandstorm-tcp-listener-proxy.git
