@@ -26,7 +26,7 @@ done
 
 mkdir -p /var/lib/mumble-server
 mkdir -p /var/run/mumble-server
-test -e /var/state && bash -c 'sleep 5; /opt/app/deps/sandstorm-tcp-listener-proxy/bin/sandstorm-tcp-listener-proxy "$(jq .token /var/state -r)" 3334 "$(jq .port /var/state -r)"'&
+test -e /var/token && bash -c 'sleep 5; /opt/app/deps/sandstorm-tcp-listener-proxy/bin/sandstorm-tcp-listener-proxy -c "$(cat /var/token)" 3334 "$(jq .port /var/state -r)"'&
 /usr/sbin/murmurd -ini /opt/app/mumble-server.ini&
 
 # Start nginx.

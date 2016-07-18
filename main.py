@@ -28,8 +28,8 @@ def read_state():
         return json.load(f)
 
 PROXY_PROCESS = None
-def start_proxy(token, localPort=3334, externalPort=3334):
-    args = ['/opt/app/deps/sandstorm-tcp-listener-proxy/bin/sandstorm-tcp-listener-proxy', token, str(localPort), str(externalPort)]
+def start_proxy(token, sessionId, localPort=3334, externalPort=3334):
+    args = ['/opt/app/deps/sandstorm-tcp-listener-proxy/bin/sandstorm-tcp-listener-proxy', token, str(localPort), str(externalPort), sessionId]
     print 'starting proxy server: ' + ' '.join(args)
     PROXY_PROCESS = subprocess.Popen(args, stdout=sys.stdout, stderr=sys.stderr)
 
@@ -44,7 +44,7 @@ def save_cap():
     if request.method == "POST":
         newState = request.form.to_dict()
         write_state(newState)
-        start_proxy(newState['token'], externalPort=newState['port'])
+        start_proxy(newState['token'], externalPort=newState['port'], sessionId=request.headers.get('x-sandstorm-session-id'))
     content = read_state()
     return render_template("index.html",
             content=content)
