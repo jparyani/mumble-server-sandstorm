@@ -19,7 +19,7 @@ const pkgdef :Spk.PackageDefinition = (
 
     appTitle = (defaultText = "Mumble server"),
 
-    appVersion = 3,  # Increment this for every release.
+    appVersion = 4,  # Increment this for every release.
 
     appMarketingVersion = (defaultText = "1.2.8"),
     # Human-readable representation of appVersion. Should match the way you
